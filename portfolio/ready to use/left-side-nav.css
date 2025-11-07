@@ -1,0 +1,296 @@
+/* Left Side Navigation - Auto-hide on hover */
+.left-side-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 80px;
+  background: rgba(20, 20, 30, 0.95);
+  backdrop-filter: blur(20px);
+  border-right: 2px solid rgba(163, 112, 240, 0.3);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+/* Show navigation on hover */
+.left-side-nav:hover {
+  transform: translateX(0);
+}
+
+/* Visual hint indicator - moving up/down with twinkle */
+.left-side-nav::after {
+  content: '✦';
+  position: absolute;
+  left: 100%;
+  top: 30%;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  font-size: 20px;
+  color: rgba(163, 112, 240, 0.9);
+  text-shadow: 
+    0 0 10px rgba(163, 112, 240, 0.8),
+    0 0 20px rgba(163, 112, 240, 0.6),
+    0 0 30px rgba(163, 112, 240, 0.4);
+  animation: moveAndTwinkle 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.left-side-nav:hover::after {
+  opacity: 0;
+}
+
+@keyframes moveAndTwinkle {
+  0% {
+    top: 20%;
+    opacity: 0.4;
+    transform: translateX(-50%) scale(0.8) rotate(0deg);
+    text-shadow: 
+      0 0 5px rgba(163, 112, 240, 0.5),
+      0 0 10px rgba(163, 112, 240, 0.3);
+  }
+  12.5% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2) rotate(45deg);
+    text-shadow: 
+      0 0 15px rgba(163, 112, 240, 1),
+      0 0 30px rgba(163, 112, 240, 0.8),
+      0 0 40px rgba(163, 112, 240, 0.6);
+  }
+  25% {
+    top: 50%;
+    opacity: 0.6;
+    transform: translateX(-50%) scale(0.9) rotate(90deg);
+    text-shadow: 
+      0 0 8px rgba(163, 112, 240, 0.6),
+      0 0 15px rgba(163, 112, 240, 0.4);
+  }
+  37.5% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2) rotate(135deg);
+    text-shadow: 
+      0 0 15px rgba(163, 112, 240, 1),
+      0 0 30px rgba(163, 112, 240, 0.8),
+      0 0 40px rgba(163, 112, 240, 0.6);
+  }
+  50% {
+    top: 80%;
+    opacity: 0.4;
+    transform: translateX(-50%) scale(0.8) rotate(180deg);
+    text-shadow: 
+      0 0 5px rgba(163, 112, 240, 0.5),
+      0 0 10px rgba(163, 112, 240, 0.3);
+  }
+  62.5% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2) rotate(225deg);
+    text-shadow: 
+      0 0 15px rgba(163, 112, 240, 1),
+      0 0 30px rgba(163, 112, 240, 0.8),
+      0 0 40px rgba(163, 112, 240, 0.6);
+  }
+  75% {
+    top: 50%;
+    opacity: 0.6;
+    transform: translateX(-50%) scale(0.9) rotate(270deg);
+    text-shadow: 
+      0 0 8px rgba(163, 112, 240, 0.6),
+      0 0 15px rgba(163, 112, 240, 0.4);
+  }
+  87.5% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2) rotate(315deg);
+    text-shadow: 
+      0 0 15px rgba(163, 112, 240, 1),
+      0 0 30px rgba(163, 112, 240, 0.8),
+      0 0 40px rgba(163, 112, 240, 0.6);
+  }
+  100% {
+    top: 20%;
+    opacity: 0.4;
+    transform: translateX(-50%) scale(0.8) rotate(360deg);
+    text-shadow: 
+      0 0 5px rgba(163, 112, 240, 0.5),
+      0 0 10px rgba(163, 112, 240, 0.3);
+  }
+}
+
+/* Trigger zone - invisible area to activate nav */
+.left-side-nav::before {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+}
+
+/* Nav content container */
+.nav-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+  padding: 0 10px;
+}
+
+/* Navigation item */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 8px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect background */
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(163, 112, 240, 0.2), rgba(123, 82, 185, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  border-radius: 12px;
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+.nav-item:hover {
+  color: #ffffff;
+  background: rgba(163, 112, 240, 0.15);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(163, 112, 240, 0.3);
+}
+
+/* Active state */
+.nav-item.active {
+  color: #a370f0;
+  background: rgba(163, 112, 240, 0.2);
+  border-left: 3px solid #a370f0;
+}
+
+/* Icon styling */
+.nav-item svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  transition: transform 0.3s ease;
+}
+
+.nav-item:hover svg {
+  transform: scale(1.15);
+}
+
+/* Label styling */
+.nav-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Glow effect on hover */
+.nav-item:hover {
+  box-shadow: 
+    0 0 20px rgba(163, 112, 240, 0.4),
+    inset 0 0 15px rgba(163, 112, 240, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .left-side-nav {
+    width: 70px;
+  }
+  
+  .nav-content {
+    gap: 20px;
+  }
+  
+  .nav-item {
+    padding: 10px 6px;
+  }
+  
+  .nav-item svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .nav-label {
+    font-size: 10px;
+  }
+}
+
+/* Small screens - make it more compact */
+@media (max-width: 480px) {
+  .left-side-nav {
+    width: 60px;
+  }
+  
+  .nav-label {
+    font-size: 9px;
+  }
+}
+
+/* Animation for smooth entry */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Accessibility - Focus states */
+.nav-item:focus {
+  outline: 2px solid rgba(163, 112, 240, 0.6);
+  outline-offset: 2px;
+}
+
+/* Tooltip effect (optional enhancement) */
+.nav-item::after {
+  content: attr(title);
+  position: absolute;
+  left: 100%;
+  margin-left: 15px;
+  padding: 8px 12px;
+  background: rgba(20, 20, 30, 0.95);
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  border: 1px solid rgba(163, 112, 240, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nav-item:hover::after {
+  opacity: 1;
+}

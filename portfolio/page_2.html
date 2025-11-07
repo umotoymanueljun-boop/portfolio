@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="page_2.css" />
+    <title>Portfolio - Page 2</title>
+    <style>
+      /* Disable vertical scrolling - horizontal only */
+      html {
+        overflow: hidden;
+        height: 100%;
+      }
+      
+      body {
+        overflow: hidden;
+        height: 100%;
+      }
+      
+      /* Left Side Navigation */
+      .left-side-nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 80px;
+        background: rgba(20, 20, 30, 0.95);
+        backdrop-filter: blur(20px);
+        border-right: 2px solid rgba(163, 112, 240, 0.3);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0;
+      }
+      
+      .left-side-nav:hover {
+        transform: translateX(0);
+      }
+      
+      /* Visual hint indicator - moving up/down with twinkle */
+      .left-side-nav::after {
+        content: '✦';
+        position: absolute;
+        left: 100%;
+        top: 30%;
+        transform: translateX(-50%);
+        width: auto;
+        height: auto;
+        font-size: 20px;
+        color: rgb(255, 149, 0);
+        text-shadow: 
+          0 0 5px rgb(157, 255, 0),
+          0 0 15px rgba(139, 92, 246, 0.7),
+          0 0 25px rgb(255, 255, 255),
+          0 0 40px rgb(255, 255, 255);
+        animation: moveAndTwinkle 3s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 2;
+        /* Enhanced glowing background effect */
+        box-shadow: 
+          0 0 20px 5px rgba(255, 255, 255, 0.4),
+          0 0 40px 15px rgba(255, 165, 0, 0.3);
+        border-radius: 50%;
+        padding: 20px;
+        filter: brightness(1.2) saturate(1.5);
+      }
+      
+      /* Final twinkle animation - pop then quick fade (Purple theme) */
+      @keyframes finalTwinkle {
+        0% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1);
+          filter: brightness(1.2) saturate(1.5);
+        }
+        40% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.4);
+          filter: brightness(2.5) saturate(2.5);
+          text-shadow: 
+            0 0 25px #fff,
+            0 0 50px #a370f0,
+            0 0 75px #8b5cf6,
+            0 0 100px #7c3aed;
+          box-shadow: 
+            0 0 50px 15px rgba(163, 112, 240, 0.9),
+            0 0 100px 40px rgba(139, 92, 246, 0.7);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(-50%) scale(1.6);
+          filter: brightness(1.2) saturate(1.5);
+          visibility: hidden;
+        }
+      }
+
+      .left-side-nav:hover {
+        transform: translateX(0);
+        transition-delay: 0s;
+      }
+
+      .left-side-nav:hover::after {
+        animation: moveAndTwinkle 3s ease-in-out infinite, finalTwinkle 0.9s ease-out forwards;
+      }
+      
+      @keyframes moveAndTwinkle {
+        0% {
+          top: 20%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(0deg);
+          text-shadow: 
+            0 0 5px rgba(163, 112, 240, 0.5),
+            0 0 10px rgba(163, 112, 240, 0.3);
+        }
+        12.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(45deg);
+          text-shadow: 
+            0 0 15px rgba(163, 112, 240, 1),
+            0 0 30px rgba(163, 112, 240, 0.8),
+            0 0 40px rgba(163, 112, 240, 0.6);
+        }
+        25% {
+          top: 50%;
+          opacity: 0.6;
+          transform: translateX(-50%) scale(0.9) rotate(90deg);
+          text-shadow: 
+            0 0 8px rgba(163, 112, 240, 0.6),
+            0 0 15px rgba(163, 112, 240, 0.4);
+        }
+        37.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(135deg);
+          text-shadow: 
+            0 0 15px rgba(163, 112, 240, 1),
+            0 0 30px rgba(163, 112, 240, 0.8),
+            0 0 40px rgba(163, 112, 240, 0.6);
+        }
+        50% {
+          top: 80%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(180deg);
+          text-shadow: 
+            0 0 5px rgba(163, 112, 240, 0.5),
+            0 0 10px rgba(163, 112, 240, 0.3);
+        }
+        62.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(225deg);
+          text-shadow: 
+            0 0 15px rgba(163, 112, 240, 1),
+            0 0 30px rgba(163, 112, 240, 0.8),
+            0 0 40px rgba(163, 112, 240, 0.6);
+        }
+        75% {
+          top: 50%;
+          opacity: 0.6;
+          transform: translateX(-50%) scale(0.9) rotate(270deg);
+          text-shadow: 
+            0 0 8px rgba(163, 112, 240, 0.6),
+            0 0 15px rgba(163, 112, 240, 0.4);
+        }
+        87.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(315deg);
+          text-shadow: 
+            0 0 15px rgba(163, 112, 240, 1),
+            0 0 30px rgba(163, 112, 240, 0.8),
+            0 0 40px rgba(163, 112, 240, 0.6);
+        }
+        100% {
+          top: 20%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(360deg);
+          text-shadow: 
+            0 0 5px rgba(163, 112, 240, 0.5),
+            0 0 10px rgba(163, 112, 240, 0.3);
+        }
+      }
+      
+      .left-side-nav::before {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 30px;
+        height: 100%;
+        background: transparent;
+        z-index: 1;
+      }
+      
+      .nav-content {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+        padding: 0 10px;
+      }
+      
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 8px;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.7);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .nav-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(163, 112, 240, 0.2), rgba(123, 82, 185, 0.2));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+        border-radius: 12px;
+      }
+      
+      .nav-item:hover::before {
+        opacity: 1;
+      }
+      
+      .nav-item:hover {
+        color: #ffffff;
+        background: rgba(163, 112, 240, 0.15);
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(163, 112, 240, 0.3);
+      }
+      
+      .nav-item.active {
+        color: #a370f0;
+        background: rgba(163, 112, 240, 0.2);
+        border-left: 3px solid #a370f0;
+      }
+      
+      .nav-item svg {
+        width: 24px;
+        height: 24px;
+        stroke-width: 2;
+        transition: transform 0.3s ease;
+      }
+      
+      .nav-item:hover svg {
+        transform: scale(1.15);
+      }
+      
+      .nav-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-align: center;
+        white-space: nowrap;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      }
+      
+      @media (max-width: 768px) {
+        .left-side-nav {
+          width: 70px;
+        }
+      }
+      
+      /* Button container styles - FIXED at bottom center */
+      .button-container {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        background: transparent;
+        gap: 20px;
+        z-index: 1000;
+      }
+      
+      .button-wrapper {
+        display: inline-block;
+      }
+      
+      /* Button styles matching index.html */
+      .cssbuttons-io-button {
+        background: #a370f0;
+        color: white;
+        font-family: inherit;
+        padding: 0.8em 3.3em 0.8em 1.8em;
+        font-size: 17px;
+        font-weight: 500;
+        border-radius: 0.9em;
+        border: none;
+        letter-spacing: 0.05em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: none;
+        overflow: hidden;
+        position: relative;
+        min-width: 180px;
+        height: 3.2em;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 1;
+        transition: all 0.3s ease;
+      }
+      
+      
+      /* Icon container */
+      .cssbuttons-io-button .icon {
+        background: white;
+        margin-left: 1em;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.2em;
+        width: 2.2em;
+        border-radius: 0.7em;
+        box-shadow: none;
+        right: 0.3em;
+        transition: all 0.3s;
+      }
+      
+      .cssbuttons-io-button:hover .icon {
+        width: calc(100% - 0.6em);
+      }
+      
+      .cssbuttons-io-button .icon svg {
+        width: 1.1em;
+        transition: transform 0.3s;
+        color: #7b52b9;
+      }
+      
+      .cssbuttons-io-button:hover .icon svg {
+        transform: translateX(0.1em);
+      }
+      
+      .cssbuttons-io-button:active .icon {
+        transform: scale(0.95);
+      }
+      
+      /* Adjust logo position */
+      .logo {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+      }
+      
+      /* Enhanced blur and darker backgrounds for better visibility */
+      .glossy-box {
+        background: rgba(20, 20, 20, 0.85) !important;
+        backdrop-filter: blur(30px) saturate(180%) !important;
+        border: 2px solid rgba(163, 112, 240, 0.4) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+      }
+      
+      .about {
+        background: rgba(15, 15, 15, 0.85) !important;
+        backdrop-filter: blur(30px) saturate(180%) !important;
+        border: 2px solid rgba(163, 112, 240, 0.35) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+      }
+      
+      .about-image-container {
+        max-width: 250px !important;
+        border-color: rgba(163, 112, 240, 0.5);
+        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        box-shadow: 0 12px 40px rgba(163, 112, 240, 0.3);
+      }
+      
+      @media (max-width: 768px) {
+        .about-content {
+          flex-direction: column !important;
+        }
+        
+        .about-image-container {
+          max-width: 180px !important;
+        }
+      }
+      
+      .about-card {
+        background: rgba(25, 25, 25, 0.85) !important;
+        backdrop-filter: blur(30px) saturate(180%) !important;
+        border: 2px solid rgba(163, 112, 240, 0.4) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+      }
+      
+      /* White text for all content on page_2 */
+      .glossy-box h1,
+      .glossy-box p,
+      .about h2,
+      .about h3,
+      .about p,
+      .about-intro h3,
+      .about-intro p,
+      .interests h3,
+      .interests-desc {
+        color: #ffffff !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+      }
+      
+      /* Additional page-specific overrides */
+      
+      /* Vertical scroll wrapper */
+      .vertical-scroll-wrapper {
+        width: 100%;
+      }
+      
+      /* Enhanced text visibility with responsive sizing */
+      .glossy-box h1 {
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 1rem !important;
+        background: linear-gradient(135deg, #ffffff, #e0d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .glossy-box p {
+        font-size: 1.2rem !important;
+        font-weight: 500 !important;
+      }
+      
+      .about h2,
+      .interests h3 {
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 1.5rem !important;
+        background: linear-gradient(135deg, #ffffff, #d4b8ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .about h3,
+      .about-intro h3 {
+        font-size: 1.5rem !important;
+        font-weight: 600 !important;
+      }
+      
+      .about p,
+      .about-intro p,
+      .interests-desc {
+        font-size: 1rem !important;
+        line-height: 1.7 !important;
+      }
+      
+      
+      /* Scroll indicator - Vertical */
+      .scroll-indicator {
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+        animation: bounce 2s infinite;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+      
+      /* Horizontal scroll hint - Enhanced */
+      .horizontal-hint {
+        position: absolute;
+        top: 50%;
+        right: 30px;
+        transform: translateY(-50%);
+        z-index: 100;
+        opacity: 0.7;
+        pointer-events: none;
+        animation: slideLeft 2s infinite;
+        background: rgba(163, 112, 240, 0.2);
+        padding: 15px;
+        border-radius: 50%;
+        backdrop-filter: blur(10px);
+      }
+      
+      @media (max-width: 768px) {
+        .horizontal-hint {
+          right: 10px;
+          padding: 10px;
+        }
+      }
+      
+      .horizontal-hint.left {
+        left: 30px;
+        right: auto;
+        animation: slideRight 2s infinite;
+      }
+      
+      @media (max-width: 768px) {
+        .horizontal-hint.left {
+          left: 10px;
+        }
+      }
+      
+      .horizontal-arrow {
+        width: 20px;
+        height: 20px;
+        border-top: 3px solid rgba(163, 112, 240, 0.8);
+        border-right: 3px solid rgba(163, 112, 240, 0.8);
+        transform: rotate(45deg);
+      }
+      
+      .horizontal-hint.left .horizontal-arrow {
+        transform: rotate(-135deg);
+      }
+      
+      @keyframes slideLeft {
+        0%, 100% { transform: translateY(-50%) translateX(0); }
+        50% { transform: translateY(-50%) translateX(-10px); }
+      }
+      
+      @keyframes slideRight {
+        0%, 100% { transform: translateY(-50%) translateX(0); }
+        50% { transform: translateY(-50%) translateX(10px); }
+      }
+      
+      .scroll-indicator.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .scroll-arrow {
+        width: 30px;
+        height: 30px;
+        border-bottom: 3px solid rgba(163, 112, 240, 0.9);
+        border-right: 3px solid rgba(163, 112, 240, 0.9);
+        transform: rotate(45deg);
+        margin: 0 auto;
+      }
+      
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-20px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+      }
+      
+      /* Enhanced effects when focused/unfocused */
+      .content-item.unfocused {
+        filter: blur(2px);
+      }
+      
+      .content-item.focused .glossy-box,
+      .content-item.focused .about,
+      .content-item.focused .interests {
+        box-shadow: 0 0 60px rgba(163, 112, 240, 0.6),
+                    0 8px 32px rgba(0, 0, 0, 0.5) !important;
+        border-color: rgba(163, 112, 240, 0.8) !important;
+        transform: scale(1) rotateY(0deg) translateZ(20px) !important;
+      }
+      
+      /* Smooth 3D perspective effect */
+      .horizontal-content {
+        perspective: 1500px;
+        perspective-origin: center center;
+      }
+      
+      .content-item {
+        transform-style: preserve-3d;
+        will-change: transform, opacity, filter;
+      }
+      
+      /* Responsive card sizing for one-line display */
+      .content-item .glossy-box,
+      .content-item .about,
+      .content-item .interests {
+        min-width: 500px !important;
+        max-width: 500px !important;
+      }
+      
+      /* Tablet */
+      @media (max-width: 1024px) {
+        .content-item .glossy-box,
+        .content-item .about,
+        .content-item .interests {
+          min-width: 400px !important;
+          max-width: 400px !important;
+          padding: 2rem !important;
+        }
+        
+        .glossy-box h1 {
+          font-size: 2.2rem !important;
+        }
+        
+        .about h2,
+        .interests h3 {
+          font-size: 2rem !important;
+        }
+      }
+      
+      /* Mobile */
+      @media (max-width: 768px) {
+        .content-item .glossy-box,
+        .content-item .about,
+        .content-item .interests {
+          min-width: 280px !important;
+          max-width: 280px !important;
+          padding: 1.5rem !important;
+        }
+        
+        .horizontal-content {
+          padding: 40px 20vw !important;
+          gap: 2rem !important;
+        }
+        
+        .content-item {
+          margin: 0 1rem !important;
+        }
+        
+        .glossy-box h1 {
+          font-size: 1.8rem !important;
+        }
+        
+        .glossy-box p {
+          font-size: 1rem !important;
+        }
+        
+        .about h2,
+        .interests h3 {
+          font-size: 1.6rem !important;
+        }
+        
+        .about h3,
+        .about-intro h3 {
+          font-size: 1.4rem !important;
+        }
+        
+        .about p,
+        .about-intro p,
+        .interests-desc {
+          font-size: 1rem !important;
+        }
+        
+        .interest-grid {
+          gap: 0.8rem !important;
+        }
+        
+        .interest-tile {
+          min-height: 80px !important;
+        }
+      }
+      
+      /* Ultra-wide displays */
+      @media (min-width: 1920px) {
+        .content-item .glossy-box,
+        .content-item .about,
+        .content-item .interests {
+          min-width: 600px !important;
+          max-width: 600px !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="dark-mode">
+    <!-- Parallax Background (Fixed) -->
+    <div class="content">
+      <div class="paralax">
+        <div class="layer rocks2"></div>
+        <div class="layer rocks1"></div>
+        <div class="layer hills"></div>
+        <div class="layer foreground"></div>
+      </div>
+    </div>
+
+    <!-- Left Side Navigation -->
+    <nav class="left-side-nav" id="leftNav">
+      <div class="nav-content">
+        <a href="index.html" class="nav-item" title="Home">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        
+        <a href="page_2.html" class="nav-item active" title="Portfolio">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span class="nav-label">Portfolio</span>
+        </a>
+        
+        <a href="page_3.html" class="nav-item" title="Projects">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        
+        <a href="contacts.html" class="nav-item" title="Contact Me">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="nav-label">Contact Me</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Rubik's Cube Loader -->
+    <div class="loader-wrapper" id="loader">
+      <svg viewBox="0 0 60 60" width="320" stroke="#6D7582" stroke-linejoin="round" class="rubiks-cube">
+        <g id="cube" fill="#fff">
+          <path id="base"/>
+          <path id="lid"/>
+        </g>
+      </svg>
+      <p class="loading-text">Loading...</p>
+    </div>
+    
+    <!-- Logo -->
+    <div class="logo">
+      <img src="ven_logo.png" alt="Logo" id="logoImage">
+    </div>
+
+    <!-- Single horizontal section with all cards -->
+    <div class="scroll-section" data-section="1">
+      <div class="horizontal-content" data-horizontal-scroll="1">
+        <!-- Card 1 -->
+        <div class="content-item">
+          <div class="glossy-box">
+            <h1>Portfolio - Page 2</h1>
+            <p>Scroll horizontally to explore</p>
+          </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="content-item">
+          <div class="glossy-box">
+            <h1>Welcome</h1>
+            <p>Experience the journey through my work</p>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="content-item">
+          <div class="glossy-box">
+            <h1>Discover More</h1>
+            <p>Each section tells a story</p>
+          </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="content-item">
+          <section class="about">
+            <h2>About me</h2>
+            <div class="about-content">
+              <div class="about-card">
+                <div class="about-image-container">
+                  <img src="1000007165.jpg" alt="Profile photo" class="profile-photo">
+                </div>
+              </div>
+              <div class="about-intro">
+                <h3>Introduction</h3>
+                <p>
+                  A little paragraph introduction that gives a sense of who you are, what
+                  you do, where you're from, and why you created this website. This is the
+                  second key part of the page to be read in full.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="content-item">
+          <section class="about">
+            <h2>My Journey</h2>
+            <div class="about-intro">
+              <h3>Background</h3>
+              <p>
+                Share your professional journey, key milestones, and experiences that
+                have shaped your career. This section highlights your growth and
+                evolution in your field.
+              </p>
+            </div>
+          </section>
+        </div>
+        
+        <!-- Card 6 -->
+        <div class="content-item">
+          <section class="about">
+            <h2>Skills & Expertise</h2>
+            <div class="about-intro">
+              <h3>What I Do Best</h3>
+              <p>
+                Highlight your core competencies, technical skills, and areas of
+                expertise. Showcase what makes you unique and valuable in your field.
+              </p>
+            </div>
+          </section>
+        </div>
+        
+        <!-- Card 7 -->
+        <div class="content-item">
+          <div class="interests">
+            <h3>Interests and hobbies</h3>
+            <p class="interests-desc">
+              A little section to round out the professional purpose of this page—who's
+              the person behind it, really? What do they like—and what are they like?
+              Sections like this can be a nice way to learn more about what makes
+              someone tick.
+            </p>
+            <div class="interest-grid">
+              <div class="interest-tile gradient-1"></div>
+              <div class="interest-tile gradient-2"></div>
+              <div class="interest-tile gradient-3"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 8 -->
+        <div class="content-item">
+          <div class="interests">
+            <h3>Creative Pursuits</h3>
+            <p class="interests-desc">
+              Explore your creative side—whether it's art, music, writing, or other
+              forms of expression. These activities help define who you are beyond
+              your professional life.
+            </p>
+            <div class="interest-grid">
+              <div class="interest-tile gradient-2"></div>
+              <div class="interest-tile gradient-3"></div>
+              <div class="interest-tile gradient-1"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 9 -->
+        <div class="content-item">
+          <div class="interests">
+            <h3>Personal Goals</h3>
+            <p class="interests-desc">
+              Share your aspirations, future projects, and what drives you forward.
+              This gives visitors insight into your vision and where you're headed
+              next in your journey.
+            </p>
+            <div class="interest-grid">
+              <div class="interest-tile gradient-3"></div>
+              <div class="interest-tile gradient-1"></div>
+              <div class="interest-tile gradient-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- Button container with new animated buttons - FIXED at bottom -->
+    <div class="button-container" id="buttonContainer">
+      <a href="index.html" class="cssbuttons-io-button">
+        Back to Portfolio
+        <div class="icon">
+          <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z" fill="currentColor"></path>
+          </svg>
+        </div>
+      </a>
+      <a href="page_3.html" class="cssbuttons-io-button">
+        Next Page
+        <div class="icon">
+          <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <script>
+      // Rubik's Cube Animation
+      (function () {
+        var cube = document.getElementById('cube');
+        var lid = document.getElementById('lid');
+        var base = document.getElementById('base');
+        
+        var lid_coordinates = [
+          // lid outline
+          [[-3,3,3],[-3,-3,3],[3,-3,3],[3,3,3],[-3,3,3],[-3,3,1],[-3,-3,1],[3,-3,1],[3,-3,3]],
+          // lid inner lines
+          [[3,1,3],[-3,1,3],[-3,1,1]],
+          [[3,-1,3],[-3,-1,3],[-3,-1,1]],
+          [[-3,-3,3],[-3,-3,1]],
+          [[-1,-3,1],[-1,-3,3],[-1,3,3]],
+          [[1,-3,1],[1,-3,3],[1,3,3]]
+        ];
+
+        var base_coordinates = [
+          [[-3,3,1],[3,3,1],[3,-3,1],[-3,-3,1],[-3,3,1],[-3,3,-3],[-3,-3,-3],[3,-3,-3],[3,-3,1]],
+          [[1,-3,-3],[1,-3,1],[1,1,1],[-3,1,1],[-3,1,-3]],
+          [[-1,-3,-3],[-1,-3,1],[-1,-1,1],[-3,-1,1],[-3,-1,-3]],
+          [[-3,-3,-3],[-3,-3,1]],
+          [[-3,3,-1],[-3,-3,-1],[3,-3,-1]]
+        ];
+
+        var u = 4; // size of the cube
+        var t = 0; // time
+        
+        function project(coordinatesGroup, t) {
+          return coordinatesGroup.map(function (coordinatesSubGroup) {
+            return coordinatesSubGroup.map(function (coordinates) {
+              var x = coordinates[0];
+              var y = coordinates[1];
+              var z = coordinates[2];
+
+              return [
+                (x *  Math.cos(t) - y * Math.sin(t)) * u + 30,
+                (x * -Math.sin(t) - y * Math.cos(t) - z * Math.sqrt(2)) * u / Math.sqrt(3) + 30
+              ];
+            });
+          });
+        }
+        
+        function toPath(coordinates) {
+          return 'M' + (JSON
+            .stringify(coordinates)
+            .replace(/]],\[\[/g, 'M')
+            .replace(/],\[/g, 'L')
+            .slice(3, -3)
+          );
+        }
+
+        function easing(t) {
+          return (2 - Math.cos(Math.PI * t)) % 2 * Math.PI / 4;
+        }
+        
+        function tick() {
+          t = (t + 1/30) % 3;
+          cube.style.transform = 'rotate(' + (Math.floor(t) * 120) + 'deg)';
+          
+          lid.setAttribute('d', toPath(project(lid_coordinates, easing(t))));
+          requestAnimationFrame(tick);
+        }
+        
+        base.setAttribute('d', toPath(project(base_coordinates, Math.PI / 4)));
+        tick();
+      })();
+
+      // Loader Logic - Faster
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fade-out');
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 300);
+        }, 800); // Show loader for 0.8 seconds
+      });
+      
+      // Fast vertical scroll animation
+      function updateScrollAnimation() {
+        const scrollSections = document.querySelectorAll('.scroll-section');
+        const scrollY = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        
+        scrollSections.forEach((section, index) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionCenter = sectionTop + (sectionHeight / 2);
+          const viewportCenter = scrollY + (viewportHeight / 2);
+          
+          // Calculate distance from viewport center
+          const distance = Math.abs(viewportCenter - sectionCenter);
+          const maxDistance = viewportHeight;
+          
+          // Faster entrance with exponential easing
+          let scale = 1 - Math.pow(distance / maxDistance, 1.5) * 0.3;
+          scale = Math.max(0.7, Math.min(1, scale));
+          
+          let opacity = 1 - Math.pow(distance / maxDistance, 1.3) * 0.5;
+          opacity = Math.max(0.5, Math.min(1, opacity));
+          
+          // Apply transformations
+          section.style.transform = `scale(${scale})`;
+          section.style.opacity = opacity;
+        });
+      }
+      
+      window.addEventListener('scroll', updateScrollAnimation);
+      window.addEventListener('resize', updateScrollAnimation);
+      
+      // Ultra smooth horizontal scroll animations
+      function setupHorizontalScrollAnimations() {
+        const horizontalContainers = document.querySelectorAll('.horizontal-content');
+        
+        horizontalContainers.forEach(container => {
+          function updateHorizontalItems() {
+            const items = container.querySelectorAll('.content-item');
+            const containerRect = container.getBoundingClientRect();
+            const containerCenter = containerRect.left + containerRect.width / 2;
+            
+            items.forEach((item, index) => {
+              const itemRect = item.getBoundingClientRect();
+              const itemCenter = itemRect.left + itemRect.width / 2;
+              
+              // Calculate distance from container center
+              const distance = Math.abs(containerCenter - itemCenter);
+              const maxDistance = containerRect.width / 2;
+              const normalizedDistance = Math.min(distance / maxDistance, 1);
+              
+              // Calculate position offset (left or right of center)
+              const offset = (containerCenter - itemCenter) / maxDistance;
+              
+              // Smoother exponential easing for buttery transitions
+              let scale = 1 - Math.pow(normalizedDistance, 2) * 0.22;
+              scale = Math.max(0.78, Math.min(1, scale));
+              
+              let opacity = 1 - Math.pow(normalizedDistance, 1.8) * 0.6;
+              opacity = Math.max(0.4, Math.min(1, opacity));
+              
+              let blur = Math.pow(normalizedDistance, 2.5) * 2.5;
+              
+              // Gentler 3D effects for ultra smooth animation
+              let rotateY = offset * 8;
+              let rotateX = normalizedDistance * -2;
+              let translateZ = (1 - normalizedDistance) * 15;
+              let translateY = Math.sin(normalizedDistance * Math.PI) * -4;
+              
+              // Apply smooth 3D transformations
+              item.style.transform = `
+                perspective(1500px)
+                scale(${scale})
+                rotateY(${rotateY}deg)
+                rotateX(${rotateX}deg)
+                translateZ(${translateZ}px)
+                translateY(${translateY}px)
+              `;
+              
+              item.style.opacity = opacity;
+              item.style.filter = `blur(${blur}px) brightness(${0.75 + (1 - normalizedDistance) * 0.25})`;
+              
+              // Tighter focus threshold
+              if (normalizedDistance < 0.2) {
+                item.classList.remove('unfocused');
+                item.classList.add('focused');
+              } else {
+                item.classList.add('unfocused');
+                item.classList.remove('focused');
+              }
+            });
+          }
+          
+          // Smooth scroll update with requestAnimationFrame
+          let ticking = false;
+          container.addEventListener('scroll', () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                updateHorizontalItems();
+                ticking = false;
+              });
+              ticking = true;
+            }
+          });
+          
+          // Initial update
+          updateHorizontalItems();
+          
+          // Update on window resize
+          window.addEventListener('resize', updateHorizontalItems);
+        });
+      }
+      
+      // Initialize horizontal scroll animations after page load
+      window.addEventListener('load', () => {
+        setupHorizontalScrollAnimations();
+      });
+      
+      // Enhanced vertical to horizontal scroll conversion
+      const scrollContainer = document.querySelector('.horizontal-content');
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      
+      let isScrolling = false;
+      let scrollTimeout;
+      
+      // Convert vertical scroll to horizontal scroll with snap behavior
+      document.addEventListener('wheel', (e) => {
+        if (scrollContainer && !isScrolling) {
+          e.preventDefault();
+          
+          // Get all cards
+          const cards = scrollContainer.querySelectorAll('.content-item');
+          if (cards.length === 0) return;
+          
+          // Calculate card width + gap
+          const containerRect = scrollContainer.getBoundingClientRect();
+          const cardRect = cards[0].getBoundingClientRect();
+          const cardWidth = cardRect.width;
+          const gap = parseFloat(getComputedStyle(scrollContainer).gap) || 64; // 4rem default
+          const scrollAmount = cardWidth + gap;
+          
+          // Determine scroll direction
+          const scrollDirection = e.deltaY > 0 ? 1 : -1;
+          
+          // Scroll to next/previous card
+          scrollContainer.scrollBy({
+            left: scrollAmount * scrollDirection,
+            behavior: 'smooth'
+          });
+          
+          // Prevent rapid scrolling
+          isScrolling = true;
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            isScrolling = false;
+          }, 600);
+          
+          // Hide scroll indicator after first scroll
+          if (scrollIndicator) {
+            scrollIndicator.style.opacity = '0';
+            setTimeout(() => {
+              scrollIndicator.style.display = 'none';
+            }, 300);
+          }
+        }
+      }, { passive: false });
+      
+      // Touch support for mobile devices
+      let touchStartY = 0;
+      let touchStartX = 0;
+      
+      if (scrollContainer) {
+        scrollContainer.addEventListener('touchstart', (e) => {
+          touchStartY = e.touches[0].clientY;
+          touchStartX = e.touches[0].clientX;
+        });
+        
+        scrollContainer.addEventListener('touchmove', (e) => {
+          if (!touchStartY) return;
+          
+          const touchDeltaY = touchStartY - e.touches[0].clientY;
+          const touchDeltaX = touchStartX - e.touches[0].clientX;
+          
+          // If vertical swipe is more dominant than horizontal
+          if (Math.abs(touchDeltaY) > Math.abs(touchDeltaX)) {
+            e.preventDefault();
+            scrollContainer.scrollLeft += touchDeltaY;
+          }
+          
+          touchStartY = e.touches[0].clientY;
+          touchStartX = e.touches[0].clientX;
+        }, { passive: false });
+        
+        scrollContainer.addEventListener('touchend', () => {
+          touchStartY = 0;
+          touchStartX = 0;
+        });
+        
+        // Add fade-in animation on scroll indicator
+        if (scrollIndicator) {
+          scrollIndicator.style.transition = 'opacity 0.3s ease';
+        }
+      }
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="page_3.css" />
+    <title>Portfolio - Page 3</title>
+    <style>
+      /* Button container styles */
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 120px 0 60px; /* Increased top margin to 120px and added bottom margin of 60px */
+        padding: 0;
+        background: transparent;
+        width: 100%;
+        gap: 20px;
+      }
+
+      .button-wrapper {
+        display: inline-block;
+      }
+
+      /* Button styles matching index.html */
+      .cssbuttons-io-button {
+        background: #a370f0;
+        color: white;
+        font-family: inherit;
+        padding: 0.8em 3.3em 0.8em 1.8em;
+        font-size: 17px;
+        font-weight: 500;
+        border-radius: 0.9em;
+        border: none;
+        letter-spacing: 0.05em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: none;
+        overflow: hidden;
+        position: relative;
+        min-width: 180px;
+        height: 3.2em;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 1;
+        transition: all 0.3s ease;
+      }
+
+      /* Icon container */
+      .cssbuttons-io-button .icon {
+        background: white;
+        margin-left: 1em;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.2em;
+        width: 2.2em;
+        border-radius: 0.7em;
+        box-shadow: none;
+        right: 0.3em;
+        transition: all 0.3s;
+      }
+
+      .cssbuttons-io-button:hover .icon {
+        width: calc(100% - 0.6em);
+      }
+
+      .cssbuttons-io-button .icon svg {
+        width: 1.1em;
+        transition: transform 0.3s;
+        color: #7b52b9;
+      }
+
+      .cssbuttons-io-button:hover .icon svg {
+        transform: translateX(0.1em);
+      }
+
+      .cssbuttons-io-button:active .icon {
+        transform: scale(0.95);
+      }
+
+      /* Adjust logo position */
+      .logo {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+      }
+
+      /* Dark grey glass background for page_3 */
+      .glossy-box {
+        background: rgba(50, 50, 50, 0.3) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(80, 80, 80, 0.3) !important;
+      }
+
+      .about {
+        background: rgba(50, 50, 50, 0.2) !important;
+        backdrop-filter: blur(8px) !important;
+        border: 1px solid rgba(80, 80, 80, 0.2) !important;
+      }
+
+      .about-card {
+        background: rgba(60, 60, 60, 0.3) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(90, 90, 90, 0.3) !important;
+      }
+
+      /* Improved text readability for page_3 - Cyberpunk style */
+      .glossy-box h1 {
+        color: #00ffff !important;
+        font-size: 1.8rem !important;
+        text-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+          0 2px 10px rgba(0, 0, 0, 0.8) !important;
+        font-weight: 700 !important;
+        letter-spacing: 1px !important;
+      }
+
+      .glossy-box p {
+        color: #00ff41 !important;
+        font-size: 0.95rem !important;
+        text-shadow: 0 0 10px rgba(0, 255, 65, 0.3),
+          0 1px 5px rgba(0, 0, 0, 0.8) !important;
+        font-weight: 500 !important;
+      }
+
+      .about h2 {
+        color: #00ffff !important;
+        font-size: 1.5rem !important;
+        text-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
+          0 2px 8px rgba(0, 0, 0, 0.8) !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+      }
+
+      .about h3 {
+        color: #ff00ff !important;
+        font-size: 1.2rem !important;
+        text-shadow: 0 0 12px rgba(255, 0, 255, 0.4),
+          0 2px 6px rgba(0, 0, 0, 0.8) !important;
+        font-weight: 600 !important;
+      }
+
+      .about p,
+      .interests-desc {
+        color: #f0f0f0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9) !important;
+        font-weight: 400 !important;
+      }
+
+      /* Left Side Navigation */
+      .left-side-nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 80px;
+        background: rgba(20, 20, 30, 0.95);
+        backdrop-filter: blur(20px);
+        border-right: 2px solid rgba(163, 112, 240, 0.3);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0;
+      }
+
+      .left-side-nav:hover {
+        transform: translateX(0);
+      }
+
+      /* Visual hint indicator - moving up/down with twinkle */
+      .left-side-nav::after {
+        content: "✦";
+        position: absolute;
+        left: 100%;
+        top: 30%;
+        transform: translateX(-50%);
+        width: auto;
+        height: auto;
+        font-size: 20px;
+        color: #fff;
+        text-shadow: 
+          0 0 5px #fff,
+          0 0 15px #ff0,
+          0 0 25px #ff8c00,
+          0 0 40px #ff4500;
+        animation: moveAndTwinkle 3s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 2;
+        /* Enhanced glowing background effect */
+        box-shadow: 
+          0 0 20px 5px rgba(255, 255, 255, 0.4),
+          0 0 40px 15px rgba(255, 165, 0, 0.3);
+        border-radius: 50%;
+        padding: 20px;
+        filter: brightness(1.2) saturate(1.5);
+      }
+
+      /* Final twinkle animation - pop then quick fade (Green/Emerald theme) */
+      @keyframes finalTwinkle {
+        0% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1);
+          filter: brightness(1.2) saturate(1.5);
+        }
+        40% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.4);
+          filter: brightness(2.5) saturate(2.5);
+          text-shadow: 
+            0 0 25px #fff,
+            0 0 50px #10b981,
+            0 0 75px #059669,
+            0 0 100px #047857;
+          box-shadow: 
+            0 0 50px 15px rgba(16, 185, 129, 0.9),
+            0 0 100px 40px rgba(5, 150, 105, 0.7);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(-50%) scale(1.6);
+          filter: brightness(1.2) saturate(1.5);
+          visibility: hidden;
+        }
+      }
+
+      .left-side-nav:hover {
+        transform: translateX(0);
+        transition-delay: 0s;
+      }
+
+      .left-side-nav:hover::after {
+        animation: moveAndTwinkle 3s ease-in-out infinite, finalTwinkle 0.9s ease-out forwards;
+      }
+
+      @keyframes moveAndTwinkle {
+        0% {
+          top: 20%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(0deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+        12.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(45deg);
+          text-shadow: 
+            0 0 8px #fff,
+            0 0 20px #ff0,
+            0 0 35px #ff8c00,
+            0 0 50px #ff4500;
+        }
+        25% {
+          top: 50%;
+          opacity: 0.6;
+          transform: translateX(-50%) scale(0.9) rotate(90deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+        37.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(135deg);
+          text-shadow: 
+            0 0 8px #fff,
+            0 0 20px #ff0,
+            0 0 35px #ff8c00,
+            0 0 50px #ff4500;
+        }
+        50% {
+          top: 80%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(180deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+        62.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(225deg);
+          text-shadow: 
+            0 0 8px #fff,
+            0 0 20px #ff0,
+            0 0 35px #ff8c00,
+            0 0 50px #ff4500;
+        }
+        75% {
+          top: 50%;
+          opacity: 0.6;
+          transform: translateX(-50%) scale(0.9) rotate(270deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+        87.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(315deg);
+          text-shadow: 
+            0 0 8px #fff,
+            0 0 20px #ff0,
+            0 0 35px #ff8c00,
+            0 0 50px #ff4500;
+        }
+        100% {
+          top: 20%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(360deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+      }
+
+      .left-side-nav::before {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 30px;
+        height: 100%;
+        background: transparent;
+        z-index: 1;
+      }
+
+      .nav-content {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+        padding: 0 10px;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 8px;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.7);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(163, 112, 240, 0.2),
+          rgba(123, 82, 185, 0.2)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+        border-radius: 12px;
+      }
+
+      .nav-item:hover::before {
+        opacity: 1;
+      }
+
+      .nav-item:hover {
+        color: #ffffff;
+        background: rgba(163, 112, 240, 0.15);
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(163, 112, 240, 0.3);
+      }
+
+      .nav-item.active {
+        color: #a370f0;
+        background: rgba(163, 112, 240, 0.2);
+        border-left: 3px solid #a370f0;
+      }
+
+      .nav-item svg {
+        width: 24px;
+        height: 24px;
+        stroke-width: 2;
+        transition: transform 0.3s ease;
+      }
+
+      .nav-item:hover svg {
+        transform: scale(1.15);
+      }
+
+      .nav-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-align: center;
+        white-space: nowrap;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+      }
+
+      /* Circuit Lines Animation */
+      .circuit-lines {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 500;
+      }
+
+      .circuit-line {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        opacity: 0.7;
+        animation: line-move 3s linear infinite;
+      }
+
+      .circuit-line.horizontal {
+        height: 2px;
+        width: 100px;
+      }
+
+      .circuit-line.vertical {
+        width: 2px;
+        height: 100px;
+      }
+
+      .circuit-line.diagonal-1 {
+        width: 100px;
+        height: 100px;
+        transform: rotate(45deg);
+      }
+
+      .circuit-line.diagonal-2 {
+        width: 100px;
+        height: 100px;
+        transform: rotate(-45deg);
+      }
+
+      @keyframes line-move {
+        0% {
+          transform: translateY(0) translateX(0);
+        }
+        100% {
+          transform: translateY(-100%) translateX(100%);
+        }
+      }
+
+      /* Binary Rain Animation */
+      #binaryRain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -3;
+      }
+
+      /* Small box */
+      .glossy-box.small {
+        padding: 10px;
+        border-radius: 8px;
+      }
+
+      /* Medium box (default) */
+      .glossy-box.medium {
+        padding: 20px;
+        border-radius: 12px;
+      }
+
+      /* Large box */
+      .glossy-box.large {
+        padding: 30px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Left Side Navigation -->
+    <nav class="left-side-nav" id="leftNav">
+      <div class="nav-content">
+        <a href="index.html" class="nav-item" title="Home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+
+        <a href="page_2.html" class="nav-item" title="Portfolio">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+            ></path>
+          </svg>
+          <span class="nav-label">Portfolio</span>
+        </a>
+
+        <a href="page_3.html" class="nav-item active" title="Projects">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+
+        <a href="contacts.html" class="nav-item" title="Contact Me">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="nav-label">Contact Me</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Rubik's Cube Loader -->
+    <div class="loader-wrapper" id="loader">
+      <svg
+        viewBox="0 0 60 60"
+        width="320"
+        stroke="#6D7582"
+        stroke-linejoin="round"
+        class="rubiks-cube"
+      >
+        <g id="cube" fill="#fff">
+          <path id="base" />
+          <path id="lid" />
+        </g>
+      </svg>
+      <p class="loading-text">Loading...</p>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo">
+      <img src="ven_logo.png" alt="Logo" id="logoImage" />
+    </div>
+
+    <div class="container container-1">
+      <div class="glossy-box">
+        <h1>Portfolio - Page 3</h1>
+        <p>Circuit Network</p>
+      </div>
+
+      <section class="about">
+        <h2>About me</h2>
+        <div class="about-content">
+          <div class="about-card">
+            <div class="about-image" aria-hidden="true"></div>
+          </div>
+          <div class="about-intro">
+            <h3>Introduction</h3>
+            <p>
+              A little paragraph introduction that gives a sense of who you are,
+              what you do, where you're from, and why you created this website.
+              This is the second key part of the page to be read in full.
+            </p>
+          </div>
+        </div>
+
+        <div class="interests">
+          <h3>Interests and hobbies</h3>
+          <p class="interests-desc">
+            A little section to round out the professional purpose of this
+            page—who's the person behind it, really? What do they like—and what
+            are they like? Sections like this can be a nice way to learn more
+            about what makes someone tick.
+          </p>
+          <div class="interest-grid">
+            <div class="interest-tile gradient-1"></div>
+            <div class="interest-tile gradient-2"></div>
+            <div class="interest-tile gradient-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Button Container -->
+      <div class="button-container">
+        <a href="page_2.html" class="cssbuttons-io-button">
+          Back to Page 2
+          <div class="icon">
+            <svg
+              height="24"
+              width="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+        </a>
+        <a href="index.html" class="cssbuttons-io-button">
+          Back to Home
+          <div class="icon">
+            <svg
+              height="24"
+              width="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Add this right after the body tag, before other content -->
+    <canvas
+      id="binaryRain"
+      style="position: fixed; top: 0; left: 0; z-index: -3"
+    ></canvas>
+
+    <script>
+      // Rubik's Cube Animation
+      (function () {
+        var cube = document.getElementById("cube");
+        var lid = document.getElementById("lid");
+        var base = document.getElementById("base");
+
+        var lid_coordinates = [
+          // lid outline
+          [
+            [-3, 3, 3],
+            [-3, -3, 3],
+            [3, -3, 3],
+            [3, 3, 3],
+            [-3, 3, 3],
+            [-3, 3, 1],
+            [-3, -3, 1],
+            [3, -3, 1],
+            [3, -3, 3],
+          ],
+          // lid inner lines
+          [
+            [3, 1, 3],
+            [-3, 1, 3],
+            [-3, 1, 1],
+          ],
+          [
+            [3, -1, 3],
+            [-3, -1, 3],
+            [-3, -1, 1],
+          ],
+          [
+            [-3, -3, 3],
+            [-3, -3, 1],
+          ],
+          [
+            [-1, -3, 1],
+            [-1, -3, 3],
+            [-1, 3, 3],
+          ],
+          [
+            [1, -3, 1],
+            [1, -3, 3],
+            [1, 3, 3],
+          ],
+        ];
+
+        var base_coordinates = [
+          [
+            [-3, 3, 1],
+            [3, 3, 1],
+            [3, -3, 1],
+            [-3, -3, 1],
+            [-3, 3, 1],
+            [-3, 3, -3],
+            [-3, -3, -3],
+            [3, -3, -3],
+            [3, -3, 1],
+          ],
+          [
+            [1, -3, -3],
+            [1, -3, 1],
+            [1, 1, 1],
+            [-3, 1, 1],
+            [-3, 1, -3],
+          ],
+          [
+            [-1, -3, -3],
+            [-1, -3, 1],
+            [-1, -1, 1],
+            [-3, -1, 1],
+            [-3, -1, -3],
+          ],
+          [
+            [-3, -3, -3],
+            [-3, -3, 1],
+          ],
+          [
+            [-3, 3, -1],
+            [-3, -3, -1],
+            [3, -3, -1],
+          ],
+        ];
+
+        var u = 4; // size of the cube
+        var t = 0; // time
+
+        function project(coordinatesGroup, t) {
+          return coordinatesGroup.map(function (coordinatesSubGroup) {
+            return coordinatesSubGroup.map(function (coordinates) {
+              var x = coordinates[0];
+              var y = coordinates[1];
+              var z = coordinates[2];
+
+              return [
+                (x * Math.cos(t) - y * Math.sin(t)) * u + 30,
+                ((x * -Math.sin(t) - y * Math.cos(t) - z * Math.sqrt(2)) * u) /
+                  Math.sqrt(3) +
+                  30,
+              ];
+            });
+          });
+        }
+
+        function toPath(coordinates) {
+          return (
+            "M" +
+            JSON.stringify(coordinates)
+              .replace(/]],\[\[/g, "M")
+              .replace(/],\[/g, "L")
+              .slice(3, -3)
+          );
+        }
+
+        function easing(t) {
+          return (((2 - Math.cos(Math.PI * t)) % 2) * Math.PI) / 4;
+        }
+
+        function tick() {
+          t = (t + 1 / 30) % 3;
+          cube.style.transform = "rotate(" + Math.floor(t) * 120 + "deg)";
+
+          lid.setAttribute("d", toPath(project(lid_coordinates, easing(t))));
+          requestAnimationFrame(tick);
+        }
+
+        base.setAttribute("d", toPath(project(base_coordinates, Math.PI / 4)));
+        tick();
+      })();
+
+      // Loader Logic - Faster
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        setTimeout(() => {
+          loader.classList.add("fade-out");
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 300);
+        }, 800); // Show loader for 0.8 seconds
+      });
+
+      // Parallax Scrolling Effect on Mouse Move
+      let mouseX = 0;
+      let mouseY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let isMouseMoving = false;
+      let mouseTimeout;
+
+      document.addEventListener("mousemove", (e) => {
+        isMouseMoving = true;
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+        clearTimeout(mouseTimeout);
+
+        mouseTimeout = setTimeout(() => {
+          isMouseMoving = false;
+        }, 50); // Reduced from 100 to 50ms - faster detection of stop
+      });
+
+      function animateParallax() {
+        // Faster return to center when mouse stops
+        if (!isMouseMoving) {
+          mouseX *= 0.85; // Changed from 0.95 to 0.85 - faster return
+          mouseY *= 0.85; // Changed from 0.95 to 0.85 - faster return
+        }
+
+        // Increased interpolation speed
+        currentX += (mouseX - currentX) * 0.2; // Changed from 0.1 to 0.2
+        currentY += (mouseY - currentY) * 0.2; // Changed from 0.1 to 0.2
+
+        const glossyBox = document.querySelector(".glossy-box");
+        const about = document.querySelector(".about");
+        const aboutCards = document.querySelectorAll(".about-card");
+        const interestTiles = document.querySelectorAll(".interest-tile");
+
+        if (glossyBox) {
+          glossyBox.style.transform = `translateZ(80px) translateX(${
+            currentX * 20
+          }px) translateY(${currentY * 20}px)`;
+        }
+
+        if (about) {
+          about.style.transform = `translateZ(60px) translateX(${
+            currentX * 15
+          }px) translateY(${currentY * 15}px)`;
+        }
+
+        aboutCards.forEach((card) => {
+          card.style.transform = `translateZ(40px) translateX(${
+            currentX * 10
+          }px) translateY(${currentY * 10}px)`;
+        });
+
+        interestTiles.forEach((tile, index) => {
+          const offset = (index - 1) * 5;
+          tile.style.transform = `translateZ(30px) translateX(${
+            currentX * (8 + offset)
+          }px) translateY(${currentY * (8 + offset)}px)`;
+        });
+
+        requestAnimationFrame(animateParallax);
+      }
+
+      // Start parallax animation
+      animateParallax();
+
+      // Scroll-based parallax effect
+      let scrollY = 0;
+
+      window.addEventListener("scroll", () => {
+        scrollY = window.scrollY;
+
+        const glossyBox = document.querySelector(".glossy-box");
+        const about = document.querySelector(".about");
+
+        if (glossyBox) {
+          const parallaxOffset = scrollY * 0.5;
+          glossyBox.style.transform = `translateZ(80px) translateX(${
+            currentX * 20
+          }px) translateY(${currentY * 20 + parallaxOffset}px)`;
+        }
+
+        if (about) {
+          const parallaxOffset = scrollY * 0.3;
+          about.style.transform = `translateZ(60px) translateX(${
+            currentX * 15
+          }px) translateY(${currentY * 15 + parallaxOffset}px)`;
+        }
+      });
+
+      // Binary Rain Animation
+      const canvas = document.getElementById("binaryRain");
+      const ctx = canvas.getContext("2d");
+
+      // Set canvas size
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      // Binary rain configuration
+      const binary = "01";
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+      const drops = [];
+
+      // Initialize drops
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.floor((Math.random() * canvas.height) / fontSize);
+      }
+
+      // Drawing function
+      function draw() {
+        // Semi-transparent black background for trail effect
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Set text style
+        ctx.fillStyle = "#0F0"; // Matrix green
+        ctx.font = fontSize + "px monospace";
+
+        // Draw binary characters
+        for (let i = 0; i < drops.length; i++) {
+          // Random binary character
+          const text = binary.charAt(Math.floor(Math.random() * binary.length));
+
+          // Calculate position
+          const x = i * fontSize;
+          const y = drops[i] * fontSize;
+
+          // Add glow effect
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = "#0F0";
+
+          // Draw the character
+          ctx.fillText(text, x, y);
+
+          // Reset shadow for performance
+          ctx.shadowBlur = 0;
+
+          // Reset drop to top when it reaches bottom
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+            drops[i] = 0;
+          }
+
+          // Move drop down
+          drops[i]++;
+        }
+      }
+
+      // Animate
+      setInterval(draw, 50);
+    </script>
+  </body>
+</html>

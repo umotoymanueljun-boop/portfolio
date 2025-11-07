@@ -1,0 +1,623 @@
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #000000;
+  position: relative;
+  z-index: 0;
+}
+
+/* Ensure all content sections are above background */
+.glassy-box, .about-section, .project-card, .content-section {
+  position: relative;
+  z-index: 1000;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Ensure all decorative elements stay behind content */
+figure, .floating-shapes, .decorative-element {
+  position: absolute;
+  z-index: -2; /* Keep decorative elements above background but below content */
+  pointer-events: none;
+}
+
+/* Main content wrapper */
+.content-wrapper {
+  position: relative;
+  z-index: 1000; /* Higher z-index to ensure content stays in front */
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Webkit scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.5);
+}
+
+/* Enhanced Sci-Fi Circuit Board Background with Parallax */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 30% 40%, rgba(163, 112, 240, 0.15), transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(0, 255, 255, 0.12), transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.08), transparent 70%);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 120% 120%, 150% 150%;
+  z-index: -2;
+  animation: gridMove 20s linear infinite, sciFiPulse 8s ease-in-out infinite;
+  box-shadow: inset 0 0 100px rgba(0, 255, 255, 0.1);
+  pointer-events: none; /* Prevent interaction with background */
+}
+
+/* Main content container */
+.container {
+  position: relative;
+  z-index: 100; /* Higher z-index to ensure content stays in front */
+  background: transparent;
+  pointer-events: auto; /* Ensure content remains interactive */
+}
+
+/* Animated Circuit Lines - Behind Content, No Interference */
+.circuit-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Keep above default but below main content */
+  overflow: hidden;
+  perspective: 1000px;
+  pointer-events: none;
+}
+
+.circuit-line {
+  position: absolute;
+  height: 2px;
+  width: 250px;
+  pointer-events: none;
+}
+
+/* Different Color Variations for Lines - All Infinite */
+.circuit-line.color-cyan {
+  background: linear-gradient(90deg,
+      rgba(0, 255, 255, 0),
+      rgba(0, 255, 255, 0.95),
+      rgba(0, 200, 255, 0.8),
+      rgba(0, 255, 255, 0));
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.9),
+              0 0 40px rgba(0, 255, 255, 0.6);
+}
+
+.circuit-line.color-magenta {
+  background: linear-gradient(90deg,
+      rgba(255, 0, 255, 0),
+      rgba(255, 0, 255, 0.95),
+      rgba(255, 50, 255, 0.8),
+      rgba(255, 0, 255, 0));
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.9),
+              0 0 40px rgba(255, 0, 255, 0.6);
+}
+
+.circuit-line.color-purple {
+  background: linear-gradient(90deg,
+      rgba(163, 112, 240, 0),
+      rgba(163, 112, 240, 0.95),
+      rgba(143, 92, 220, 0.8),
+      rgba(163, 112, 240, 0));
+  box-shadow: 0 0 20px rgba(163, 112, 240, 0.9),
+              0 0 40px rgba(163, 112, 240, 0.6);
+}
+
+.circuit-line.color-green {
+  background: linear-gradient(90deg,
+      rgba(0, 255, 100, 0),
+      rgba(0, 255, 100, 0.95),
+      rgba(50, 255, 150, 0.8),
+      rgba(0, 255, 100, 0));
+  box-shadow: 0 0 20px rgba(0, 255, 100, 0.9),
+              0 0 40px rgba(0, 255, 100, 0.6);
+}
+
+/* Circuit Box Styles - Different Colors */
+.circuit-box {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.circuit-box.color-cyan {
+  background: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 1),
+              0 0 30px rgba(0, 255, 255, 0.7),
+              inset 0 0 5px rgba(255, 255, 255, 0.9);
+}
+
+.circuit-box.color-magenta {
+  background: rgba(255, 0, 255, 0.8);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 1),
+              0 0 30px rgba(255, 0, 255, 0.7),
+              inset 0 0 5px rgba(255, 255, 255, 0.9);
+}
+
+.circuit-box.color-purple {
+  background: rgba(163, 112, 240, 0.8);
+  box-shadow: 0 0 15px rgba(163, 112, 240, 1),
+              0 0 30px rgba(163, 112, 240, 0.7),
+              inset 0 0 5px rgba(255, 255, 255, 0.9);
+}
+
+.circuit-box.color-green {
+  background: rgba(0, 255, 100, 0.8);
+  box-shadow: 0 0 15px rgba(0, 255, 100, 1),
+              0 0 30px rgba(0, 255, 100, 0.7),
+              inset 0 0 5px rgba(255, 255, 255, 0.9);
+}
+
+/* Loader Position Fix - Black background like index and page_2 */
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+/* New Animations - Now Infinite */
+@keyframes gridMove {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sciFiPulse {
+  0%, 100% {
+    filter: brightness(1) contrast(1);
+  }
+  50% {
+    filter: brightness(1.2) contrast(1.1);
+  }
+}
+
+/* Dynamic Multi-Directional Line Animations */
+@keyframes move-left-right {
+  0% {
+    left: -15%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
+}
+
+@keyframes move-right-left {
+  0% {
+    right: -15%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    right: 115%;
+    opacity: 0;
+  }
+}
+
+@keyframes move-top-bottom {
+  0% {
+    top: -15%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 115%;
+    opacity: 0;
+  }
+}
+
+@keyframes move-bottom-top {
+  0% {
+    bottom: -15%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 115%;
+    opacity: 0;
+  }
+}
+
+@keyframes move-bl-tr {
+  0% {
+    bottom: -15%;
+    left: -15%;
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 115%;
+    left: 115%;
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes move-br-tl {
+  0% {
+    bottom: -15%;
+    right: -15%;
+    opacity: 0;
+    transform: rotate(-45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 115%;
+    right: 115%;
+    opacity: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes move-tl-br {
+  0% {
+    top: -15%;
+    left: -15%;
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 115%;
+    left: 115%;
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes move-tr-bl {
+  0% {
+    top: -15%;
+    right: -15%;
+    opacity: 0;
+    transform: rotate(-45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 115%;
+    right: 115%;
+    opacity: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+/* ========================================
+   ALL ANIMATIONS BELOW ARE INFINITE LOOPS
+   ======================================== */
+
+/* Apply animations to circuit lines */
+.move-left-right {
+  animation: move-left-right 8s linear infinite;
+}
+
+.move-right-left {
+  animation: move-right-left 8s linear infinite;
+}
+
+.move-top-bottom {
+  animation: move-top-bottom 10s linear infinite;
+  width: 2px;
+  height: 250px;
+}
+
+.move-bottom-top {
+  animation: move-bottom-top 10s linear infinite;
+  width: 2px;
+  height: 250px;
+}
+
+.move-bl-tr {
+  animation: move-bl-tr 12s linear infinite;
+  width: 3px;
+  height: 350px;
+}
+
+.move-br-tl {
+  animation: move-br-tl 12s linear infinite;
+  width: 3px;
+  height: 350px;
+}
+
+.move-tl-br {
+  animation: move-tl-br 12s linear infinite;
+  width: 3px;
+  height: 350px;
+}
+
+.move-tr-bl {
+  animation: move-tr-bl 12s linear infinite;
+  width: 3px;
+  height: 350px;
+}
+
+/* Floating Box Animations */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-150px) scale(1.3) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-300px) scale(0.8) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-down {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(150px) scale(1.2) rotate(-180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300px) scale(0.9) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-diagonal {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(200px, -200px) scale(1.4) rotate(270deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(400px, -400px) scale(0.7) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-circle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translate(100px, -100px) scale(1.3);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0, -200px) scale(1.1);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-100px, -100px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.float-up {
+  animation: float-up 6s ease-in-out infinite;
+}
+
+.float-down {
+  animation: float-down 7s ease-in-out infinite;
+}
+
+.float-diagonal {
+  animation: float-diagonal 9s ease-in-out infinite;
+}
+
+.float-circle {
+  animation: float-circle 8s ease-in-out infinite;
+}
+
+/* Enhanced Parallax Scroll Effect */
+.container {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 100px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2; /* Increase z-index to stay above background elements */
+}
+
+.glossy-box {
+  position: relative;
+  transform: translateZ(80px);
+  will-change: transform;
+  transition: transform 0.3s ease-out;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: center;
+  z-index: 3;
+}
+
+.about {
+  position: relative;
+  transform: translateZ(60px);
+  will-change: transform;
+  transition: transform 0.3s ease-out;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 3;
+}
+
+.about-card {
+  transform: translateZ(40px);
+  transition: transform 0.3s ease-out;
+}
+
+.interest-tile {
+  transform: translateZ(30px);
+  transition: transform 0.3s ease-out;
+}
+
+/* Sci-Fi Floating Particles Effect */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(0, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(163, 112, 240, 0.8), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 0, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(0, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 90% 60%, rgba(163, 112, 240, 0.7), transparent),
+    radial-gradient(1px 1px at 33% 50%, rgba(0, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 75% 88%, rgba(255, 0, 255, 0.5), transparent);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  animation: floatingParticles 30s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes floatingParticles {
+  0%, 100% {
+    background-position: 0% 0%;
+    opacity: 0.6;
+  }
+  25% {
+    background-position: 100% 0%;
+    opacity: 0.8;
+  }
+  50% {
+    background-position: 100% 100%;
+    opacity: 0.6;
+  }
+  75% {
+    background-position: 0% 100%;
+    opacity: 0.8;
+  }
+}
+
+/* Enhanced Glow Effects for Sci-Fi Look */
+.glossy-box {
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.2),
+    0 0 60px rgba(163, 112, 240, 0.15),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.about {
+  box-shadow: 
+    0 0 25px rgba(163, 112, 240, 0.2),
+    0 0 50px rgba(0, 255, 255, 0.15),
+    inset 0 0 15px rgba(163, 112, 240, 0.05);
+}
+
+.about-card {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.15),
+    inset 0 0 10px rgba(163, 112, 240, 0.1);
+}

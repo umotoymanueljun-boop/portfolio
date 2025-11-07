@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Portfolio</title>
+    <style>
+      /* Main content styles */
+      .main-content {
+          opacity: 1;
+          transition: opacity 0.5s ease-in-out;
+      }
+
+      @keyframes sceneFadeIn {
+          0% {
+              opacity: 0;
+              transform: translateY(-150px) scale(0.7);
+          }
+          100% {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+          }
+      }
+
+      @keyframes sceneFloatUp {
+          0% {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+          }
+          100% {
+              opacity: 0;
+              transform: translateY(-600px) scale(0.3);
+          }
+      }
+
+      .card-scene.fade-in {
+          animation: sceneFadeIn 0.8s ease-out forwards;
+      }
+
+      .card-scene.float-up {
+          animation: sceneFloatUp 1.5s ease-in forwards;
+      }
+
+      @keyframes fadeOutIntro {
+          to {
+              opacity: 0;
+              visibility: hidden;
+          }
+      }
+
+      .intro-container.fade-out {
+          animation: fadeOutIntro 0.8s ease-in-out forwards;
+      }
+
+      @media (max-width: 768px) {
+          .card-scene {
+              width: 340px;
+              height: 200px;
+          }
+          .welcome-text {
+              font-size: 2.2rem;
+          }
+          .name-text {
+              font-size: 1.4rem;
+          }
+          .degree-text {
+              font-size: 0.9rem;
+          }
+      }
+
+      /* Wormhole Parallax Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #000000;
+        overflow-x: hidden;
+      }
+
+      .parallax-container {
+        height: 400vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: -1;
+      }
+
+      .parallax-section {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        perspective: 1500px;
+      }
+
+      .geometric-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000000;
+      }
+
+      .wormhole-container {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform-style: preserve-3d;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-font-smoothing: subpixel-antialiased;
+      }
+
+      .box {
+        position: absolute;
+        border: 2px solid;
+        border-radius: 4px;
+        transform: translateZ(0) rotate(45deg);
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
+        -webkit-font-smoothing: subpixel-antialiased;
+        perspective: 1000px;
+        -webkit-perspective: 1000px;
+        transform-style: preserve-3d;
+        contain: layout style paint;
+      }
+
+      /* Enhanced box styles with smooth transitions and vibrant colors */
+      .box {
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform, border-color, box-shadow, opacity;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      }
+      
+      .box:hover {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+        transform: translateZ(0) rotate(45deg) scale(1.03) !important;
+      }
+      
+      /* Vibrant color scheme with smooth transitions */
+      .box1 { width: 80px; height: 80px; border-color: #ff3366; z-index: 20; transform: translateZ(0) rotate(45deg); }
+      .box2 { width: 120px; height: 120px; border-color: #00ffcc; z-index: 19; transform: translateZ(0) rotate(45deg); }
+      .box3 { width: 160px; height: 160px; border-color: #ff00ff; z-index: 18; transform: translateZ(0) rotate(45deg); }
+      .box4 { width: 200px; height: 200px; border-color: #00ccff; z-index: 17; transform: translateZ(0) rotate(45deg); }
+      .box5 { width: 240px; height: 240px; border-color: #ffcc00; z-index: 16; transform: translateZ(0) rotate(45deg); }
+      .box6 { width: 280px; height: 280px; border-color: #ff6600; z-index: 15; transform: translateZ(0) rotate(45deg); }
+      .box7 { width: 320px; height: 320px; border-color: #00ff99; z-index: 14; transform: translateZ(0) rotate(45deg); }
+      .box8 { width: 360px; height: 360px; border-color: #cc66ff; z-index: 13; transform: translateZ(0) rotate(45deg); }
+      .box9 { width: 400px; height: 400px; border-color: #00ffff; z-index: 12; transform: translateZ(0) rotate(45deg); }
+      .box10 { width: 440px; height: 440px; border-color: #ff3399; z-index: 11; transform: translateZ(0) rotate(45deg); }
+      
+      /* Problem-Solving Approach Styles */
+      .problem-solving-approach {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      
+      .approach-step {
+        background: rgba(30, 30, 40, 0.6);
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .approach-step:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      
+      .approach-step h4 {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+      
+      .approach-step h4:before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: linear-gradient(135deg, #00ccff, #0066ff);
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      
+      .approach-step p {
+        color: #b3b3b3;
+        margin: 0;
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+      
+      @media (max-width: 768px) {
+        .approach-step {
+          padding: 1.25rem;
+        }
+        
+        .approach-step h4 {
+          font-size: 1rem;
+        }
+        
+        .approach-step p {
+          font-size: 0.9rem;
+        }
+      }
+      
+      /* Add animation for continuous color shifting */
+      @keyframes colorShift1 { 0% { border-color: #ff3366; } 25% { border-color: #ff6600; } 50% { border-color: #ffcc00; } 75% { border-color: #ff0066; } 100% { border-color: #ff3366; } }
+      @keyframes colorShift2 { 0% { border-color: #00ffcc; } 25% { border-color: #00ccff; } 50% { border-color: #0066ff; } 75% { border-color: #00ffff; } 100% { border-color: #00ffcc; } }
+      @keyframes colorShift3 { 0% { border-color: #ff00ff; } 25% { border-color: #cc00ff; } 50% { border-color: #9900ff; } 75% { border-color: #ff00cc; } 100% { border-color: #ff00ff; } }
+      @keyframes colorShift4 { 0% { border-color: #00ccff; } 25% { border-color: #0099ff; } 50% { border-color: #0066ff; } 75% { border-color: #00ffff; } 100% { border-color: #00ccff; } }
+      @keyframes colorShift5 { 0% { border-color: #ffcc00; } 25% { border-color: #ff9900; } 50% { border-color: #ff6600; } 75% { border-color: #ffcc33; } 100% { border-color: #ffcc00; } }
+      
+      /* Apply animations with different timings */
+      .box1 { animation: colorShift1 12s infinite linear; }
+      .box2 { animation: colorShift2 15s infinite linear; }
+      .box3 { animation: colorShift3 18s infinite linear; }
+      .box4 { animation: colorShift4 21s infinite linear; }
+      .box5 { animation: colorShift5 24s infinite linear; }
+      .box6 { animation: colorShift1 27s infinite linear; }
+      .box7 { animation: colorShift2 30s infinite linear; }
+      .box8 { animation: colorShift3 33s infinite linear; }
+      .box9 { animation: colorShift4 36s infinite linear; }
+      .box10 { animation: colorShift5 39s infinite linear; }
+    </style>
+    <style>
+      /* Button container styles */
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 48px;
+        padding: 0;
+        background: transparent;
+        width: 100%;
+      }
+      
+      .button-wrapper {
+        display: inline-block;
+      }
+      
+      /* New button styles with animation */
+      .cssbuttons-io-button {
+        background: #a370f000;
+        color: white;
+        font-family: inherit;
+        padding: 0.8em 3.3em 0.8em 1.8em;
+        font-size: 17px;
+        font-weight: 500;
+        border-radius: 0.9em;
+        border: 2px solid #8a5bd6;
+        letter-spacing: 0.05em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: none;
+        overflow: hidden;
+        position: relative;
+        min-width: 180px;
+        height: 3.2em;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 1;
+        transition: all 0.3s ease;
+      }
+      
+      .cssbuttons-io-button .icon {
+        background: white;
+        margin-left: 1em;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.2em;
+        width: 2.2em;
+        border-radius: 0.7em;
+        box-shadow: none;
+        right: 0.3em;
+        transition: all 0.3s;
+      }
+      
+      .cssbuttons-io-button:hover .icon {
+        width: calc(100% - 0.6em);
+      }
+      
+      .cssbuttons-io-button .icon svg {
+        width: 1.1em;
+        transition: transform 0.3s;
+        color: #7b52b9;
+      }
+      
+      .cssbuttons-io-button:hover .icon svg {
+        transform: translateX(0.1em);
+      }
+      
+      .cssbuttons-io-button:active .icon {
+        transform: scale(0.95);
+      }
+      .button-container .bottom-center-button.visible {
+        opacity: 1;
+      }
+      .button-container .bottom-center-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 28px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);
+        background: linear-gradient(135deg, #b2eb50, #97f7c0);
+      }
+      .button-container .bottom-center-button:active {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+      }
+
+      /* Section Box - Glassmorphism for each section */
+      .section-box {
+        margin-bottom: 30px;
+      }
+      
+      .section-box h2,
+      .section-box h3 {
+        margin-top: 0;
+      }
+      
+      /* Left Side Navigation */
+      .left-side-nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 80px;
+        background: rgba(20, 20, 30, 0.95);
+        backdrop-filter: blur(20px);
+        border-right: 2px solid rgba(163, 112, 240, 0.3);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0;
+      }
+      
+      .left-side-nav:hover {
+        transform: translateX(0);
+      }
+      
+      /* Visual hint indicator - moving up/down with twinkle */
+      .left-side-nav::after {
+        content: '✦';
+        position: absolute;
+        left: 100%;
+        top: 30%;
+        transform: translateX(-50%);
+        width: auto;
+        height: auto;
+        font-size: 20px;
+        color: #fff;
+        text-shadow: 
+          0 0 5px #fff,
+          0 0 15px #ff0,
+          0 0 25px #ff8c00,
+          0 0 40px #ff4500;
+        animation: moveAndTwinkle 3s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 2;
+        /* Enhanced glowing background effect */
+        box-shadow: 
+          0 0 20px 5px rgba(255, 255, 255, 0.4),
+          0 0 40px 15px rgba(255, 165, 0, 0.3);
+        border-radius: 50%;
+        padding: 20px;
+        filter: brightness(1.2) saturate(1.5);
+      }
+      
+      /* Final twinkle animation - pop then quick fade (Blue/Cyan theme) */
+      @keyframes finalTwinkle {
+        0% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1);
+          filter: brightness(1.2) saturate(1.5);
+        }
+        40% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.4);
+          filter: brightness(2.5) saturate(2.5);
+          text-shadow: 
+            0 0 25px #fff,
+            0 0 50px #00d4ff,
+            0 0 75px #00a8cc,
+            0 0 100px #0077b6;
+          box-shadow: 
+            0 0 50px 15px rgba(0, 212, 255, 0.9),
+            0 0 100px 40px rgba(0, 168, 204, 0.7);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(-50%) scale(1.6);
+          filter: brightness(1.2) saturate(1.5);
+          visibility: hidden;
+        }
+      }
+
+      .left-side-nav:hover {
+        transform: translateX(0);
+        transition-delay: 0s;
+      }
+
+      .left-side-nav:hover::after {
+        animation: moveAndTwinkle 3s ease-in-out infinite, finalTwinkle 0.9s ease-out forwards;
+      }
+      
+      @keyframes moveAndTwinkle {
+        0% {
+          top: 20%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(0deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+        12.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(45deg);
+          text-shadow: 
+            0 0 8px #fff,
+            0 0 20px #ff0,
+            0 0 35px #ff8c00,
+            0 0 50px #ff4500;
+        }
+        25% {
+          top: 50%;
+          opacity: 0.6;
+          transform: translateX(-50%) scale(0.9) rotate(90deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+        37.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(135deg);
+          text-shadow: 
+            0 0 8px #fff,
+            0 0 20px #ff0,
+            0 0 35px #ff8c00,
+            0 0 50px #ff4500;
+        }
+        50% {
+          top: 80%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(180deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+        62.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(225deg);
+          text-shadow: 
+            0 0 8px #fff,
+            0 0 20px #ff0,
+            0 0 35px #ff8c00,
+            0 0 50px #ff4500;
+        }
+        75% {
+          top: 50%;
+          opacity: 0.6;
+          transform: translateX(-50%) scale(0.9) rotate(270deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+        87.5% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1.2) rotate(315deg);
+          text-shadow: 
+            0 0 8px #fff,
+            0 0 20px #ff0,
+            0 0 35px #ff8c00,
+            0 0 50px #ff4500;
+        }
+        100% {
+          top: 20%;
+          opacity: 0.4;
+          transform: translateX(-50%) scale(0.8) rotate(360deg);
+          text-shadow: 
+            0 0 5px #fff,
+            0 0 15px #ff0,
+            0 0 25px #ff8c00,
+            0 0 40px #ff4500;
+        }
+      }
+      
+      .left-side-nav::before {
+        content: '';
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 30px;
+        height: 100%;
+        background: transparent;
+        z-index: 1;
+      }
+      
+      .nav-content {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+        padding: 0 10px;
+      }
+      
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 8px;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.7);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .nav-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(163, 112, 240, 0.2), rgba(123, 82, 185, 0.2));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+        border-radius: 12px;
+      }
+      
+      .nav-item:hover::before {
+        opacity: 1;
+      }
+      
+      .nav-item:hover {
+        color: #ffffff;
+        background: rgba(163, 112, 240, 0.15);
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(163, 112, 240, 0.3);
+      }
+      
+      .nav-item.active {
+        color: #a370f0;
+        background: rgba(163, 112, 240, 0.2);
+        border-left: 3px solid #a370f0;
+      }
+      
+      .nav-item svg {
+        width: 24px;
+        height: 24px;
+        stroke-width: 2;
+        transition: transform 0.3s ease;
+      }
+      
+      .nav-item:hover svg {
+        transform: scale(1.15);
+      }
+      
+      .nav-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-align: center;
+        white-space: nowrap;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      }
+      
+      @media (max-width: 768px) {
+        .left-side-nav {
+          width: 70px;
+        }
+        
+        .nav-content {
+          gap: 20px;
+        }
+        
+        .nav-item {
+          padding: 10px 6px;
+        }
+        
+        .nav-item svg {
+          width: 20px;
+          height: 20px;
+        }
+        
+        .nav-label {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Content -->
+    <div class="main-content">
+    <!-- Wormhole Background -->
+    <div class="parallax-container">
+      <div class="parallax-section">
+        <div class="geometric-bg"></div>
+        <div class="wormhole-container" id="wormholeContainer">
+          <div class="box box1"></div>
+          <div class="box box2"></div>
+          <div class="box box3"></div>
+          <div class="box box4"></div>
+          <div class="box box5"></div>
+          <div class="box box6"></div>
+          <div class="box box7"></div>
+          <div class="box box8"></div>
+          <div class="box box9"></div>
+          <div class="box box10"></div>
+          <div class="box box11"></div>
+          <div class="box box12"></div>
+          <div class="box box13"></div>
+          <div class="box box14"></div>
+          <div class="box box15"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left Side Navigation -->
+    <nav class="left-side-nav" id="leftNav">
+      <div class="nav-content">
+        <a href="index.html" class="nav-item active" title="Home">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        
+        <a href="page_2.html" class="nav-item" title="Portfolio">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span class="nav-label">Portfolio</span>
+        </a>
+        
+        <a href="page_3.html" class="nav-item" title="Projects">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span class="nav-label">Projects</span>
+        </a>
+        
+        <a href="contacts.html" class="nav-item" title="Contact Me">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="nav-label">Contact Me</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Logo -->
+    <div class="logo">
+      <img src="ven_logo.png" alt="Logo" id="logoImage">
+    </div>
+
+    <!-- Rubik's Cube Loader -->
+    <div class="loader-wrapper" id="loader">
+      <div class="welcome-message">Welcome To My Portfolio</div>
+      <svg viewBox="0 0 60 60" width="320" stroke="#6D7582" stroke-linejoin="round" class="rubiks-cube">
+        <g id="cube" fill="#fff">
+          <path id="base"/>
+          <path id="lid"/>
+        </g>
+      </svg>
+      <p class="loading-text">Loading...</p>
+    </div>
+
+    <div class="container container-1" style="padding-bottom: 60px;">
+      <!-- ===== HERO SECTION ===== -->
+      <div class="glossy-box">
+        <h1>Manuel Jun V. Umotoy</h1>
+        <p>Network and Security Specialist</p>
+      </div>
+      
+      <!-- ===== ABOUT ME SECTION ===== -->
+      <section class="about">
+        <div class="glossy-box section-box">
+          <h2>About me</h2>
+          <div class="about-content">
+            <div class="about-card">
+              <div class="about-image has-photo" style="background-image: url(about\ me\ .jpg);"></div>
+            </div>
+            <div class="about-intro">
+              <!-- ===== INTRODUCTION ===== -->
+              <h3>Introduction</h3>
+              <p>
+                I am a graduate of Bachelor of Science in Information Technology Major in Network and Security at the University 
+                Of The Cordilleras. I have a strong foundation in computer networks, cybersecurity principles, and IT infrastructure management.
+                Throughout my academic journey, I have gained hands-on experience in configuring and managing network devices,
+                implementing security protocols, and troubleshooting network issues. I always stay updated with the latest
+                advancements in network technologies and cybersecurity trends. I crave to apply and enhance further my knowledge and skills to contribute to
+                the field of network and security, ensuring the integrity and confidentiality of information systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== LIFE BEYOND CODE ===== -->
+      <section class="interests">
+        <div class="glossy-box section-box">
+          <h3 class="glossy-title">Life Beyond Code</h3>
+          <p class="interests-desc">
+            When I'm not coding, I usually play online games, watch movies, read books that interests me. I also review my past lessons when I was still a college student,
+            believe that I won't forget those as it brought me to where I am rigth now
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== PROBLEM-SOLVING APPROACH ===== -->
+      <section class="interests">
+        <div class="glossy-box section-box">
+          <h3 class="glossy-title">Problem-Solving Approach</h3>
+          <div class="problem-solving-approach">
+            <div class="approach-step">
+              <h4>1. Analysis & Understanding</h4>
+              <p>I begin to view the problem first like a puzzle that needs to be solved then i will be thoroughly analyzing the problem to understand its core components, constraints, and requirements. This helps me identify the root cause and scope of the issue.</p>
+            </div>
+            <div class="approach-step">
+              <h4>2. Research & Planning</h4>
+              <p>I research existing solutions and best practices, then develop a structured plan with clear milestones and potential challenges.</p>
+            </div>
+            <div class="approach-step">
+              <h4>3. Implementation</h4>
+              <p>I implement solutions methodically, writing clean and maintainable code while following best practices and security standards.</p>
+            </div>
+            <div class="approach-step">
+              <h4>4. Testing & Validation</h4>
+              <p>I rigorously test the solution, validate against requirements, and ensure it handles edge cases and potential security vulnerabilities.</p>
+            </div>
+            <div class="approach-step">
+              <h4>5. Documentation & Review</h4>
+              <p>I document the solution and process, then review the approach to identify areas for improvement and learning opportunities.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CORE SECURITY COMPETENCIES ===== -->
+      <section class="interests">
+        <div class="glossy-box section-box">
+          <h3 class="glossy-title">Core Security Competencies</h3>
+          <div class="interest-grid">
+            <div class="tech-stack-category">
+              <h4>Certifications</h4>
+              <div class="tech-stack-items">
+                <span>CompTIA Security+</span>
+                <span>CEH</span>
+                <span>ISC2</span>
+                <span>CISSP</span>
+                <span>CCSP</span>
+                <span>CISA</span>
+                <span>GIAC Security Essentials</span>
+                <span>CCNA</span>
+              </div>
+            </div>
+            <div class="tech-stack-category">
+              <h4>Roles</h4>
+              <div class="tech-stack-items">
+                <span>Cybersecurity Analyst</span>
+                <span>Security Engineer</span>
+                <span>Chief Information Security Officer</span>
+                <span>Security Administrator</span>
+                <span>Security Consultant</span>
+                <span>Security Operations Professional</span>
+              </div>
+            </div>
+            <div class="tech-stack-category">
+              <h4>Specializations</h4>
+              <div class="tech-stack-items">
+                <span>Network Security</span>
+                <span>Cloud Security</span>
+                <span>Penetration Testing</span>
+                <span>Security Auditing</span>
+                <span>Incident Response</span>
+                <span>Risk Management</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ===== TECH STACK ===== -->
+      <section class="interests">
+        <div class="glossy-box section-box">
+          <h3 class="glossy-title">Tech Stack</h3>
+          <div class="interest-grid">
+            <div class="tech-stack-category">
+              <h4>Front-end</h4>
+              <div class="tech-stack-items">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JAVASCRIPT</span>
+              </div>
+            </div>
+            <div class="tech-stack-category">
+              <h4>Back-end:</h4>
+              <div class="tech-stack-items">
+                <span>MySQL</span>
+              </div>
+            </div>
+            <div class="tech-stack-category">
+              <h4>Programming languages:</h4>
+              <div class="tech-stack-items">
+                <span>Python</span>
+                <span>Java</span>
+                <span>Ruby</span>
+                <span>Rust</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ===== OPERATING SYSTEMS ===== -->
+      <section class="interests">
+        <div class="glossy-box section-box">
+          <h3 class="glossy-title">Operating Systems</h3>
+          <div class="os-container">
+            <div class="os-item">Windows</div>
+            <div class="os-item">MacOS</div>
+            <div class="os-item">Linux</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Button Container -->
+      <div class="button-container">
+        <div class="button-wrapper">
+          <a href="page_2.html" class="cssbuttons-io-button" id="bottomButton">
+            Explore More
+            <div class="icon">
+              <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+      
+    </div>
+
+    <script>
+        // Intro animation script
+        const cardScene = document.getElementById('cardScene');
+        const cardFlipper = document.getElementById('cardFlipper');
+        const intro = document.getElementById('introContainer');
+        const mainContent = document.querySelector('.main-content');
+
+        // Animation sequence
+        // 1. Fade in
+        setTimeout(() => {
+            cardScene.classList.add('fade-in');
+        }, 100);
+
+        // 2. Fade out and show main content
+        setTimeout(() => {
+            intro.classList.add('fade-out');
+            setTimeout(() => {
+                intro.style.display = 'none';
+                mainContent.style.display = 'block';
+                // Trigger any initialization that might be needed for the main content
+                if (typeof setNestedLayout === 'function') {
+                    setNestedLayout();
+                }
+                // Force a scroll event to update any scroll-based animations
+                window.dispatchEvent(new Event('scroll'));
+            }, 800);
+        }, 3200);
+      // Wormhole Animation - Start Nested, Then Infinite
+      const boxes = document.querySelectorAll('.box');
+      let ticking = false;
+      let lastScrollY = 0;
+      
+      // Color palette for initial nested state
+      const initialColors = [
+        '#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#a29bfe',
+        '#fd79a8', '#fdcb6e', '#6c5ce7', '#00b894', '#e17055',
+        '#ff6348', '#1dd1a1', '#feca57', '#48dbfb', '#ff9ff3'
+      ];
+      
+      // Optimized nested layout function
+      function setNestedLayout() {
+        const now = performance.now();
+        
+        // Only update if we haven't updated recently (for performance)
+        if (now - (window.lastNestedUpdate || 0) < 100) {
+          return;
+        }
+        window.lastNestedUpdate = now;
+        
+        // Batch DOM updates
+        const fragment = document.createDocumentFragment();
+        const tempDiv = document.createElement('div');
+        
+        boxes.forEach((box, index) => {
+          const scale = 1 - (index * 0.05);
+          const color = initialColors[index % initialColors.length];
+          
+          // Only update if values have changed
+          if (box.dataset.currentScale !== scale.toString() || 
+              box.dataset.lastColor !== color) {
+            box.style.transform = `translateZ(0) rotate(45deg) scale(${scale})`;
+            box.style.opacity = '1';
+            box.style.borderColor = color;
+            box.dataset.currentScale = scale;
+            box.dataset.lastColor = color;
+            
+            // Use will-change only during animation
+            box.style.willChange = 'transform, opacity';
+            
+            // Remove will-change after animation completes
+            clearTimeout(box.willChangeTimeout);
+            box.willChangeTimeout = setTimeout(() => {
+              box.style.willChange = 'auto';
+            }, 300);
+          }
+        });
+        
+        lastRenderedScroll = window.pageYOffset || 0;
+      }
+
+      // Cache DOM references and pre-calculate values
+      const boxCount = boxes.length;
+      const easeInOut = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      const transformBase = 'translateZ(0) rotate3d(0, 0, 1, ';
+      const cycleDistance = 3500; // Further increased cycle distance for even slower animation
+      const boxOffsets = Array.from({ length: boxCount }, (_, i) => i * 200); // Reduced offset for smoother transitions
+      
+      function updateBoxes() {
+        const scrolled = lastScrollY;
+        
+        // Skip update if scroll position hasn't changed and we're not at the top
+        if (scrolled === lastRenderedScroll && scrolled > 10) {
+          ticking = false;
+          return;
+        }
+        
+        // Handle top of page case
+        if (scrolled <= 10) {
+          // Force update to ensure smooth transition back to original position
+          boxes.forEach((box, index) => {
+            const scale = 1 - (index * 0.05);
+            box.style.transform = `translateZ(0) rotate(45deg) scale(${scale})`;
+            box.style.opacity = '1';
+            box.style.borderColor = initialColors[index % initialColors.length];
+            box.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          });
+          ticking = false;
+          lastRenderedScroll = scrolled;
+          return;
+        }
+        
+        // Update last rendered position
+        lastRenderedScroll = scrolled;
+        
+        // Process boxes in a single animation frame
+        for (let i = 0; i < boxCount; i++) {
+          const box = boxes[i];
+          
+          // Calculate continuous scrolling effect with offset for each box
+          const scrollWithOffset = scrolled * 0.7 + (i * 150); // Reduced scroll multiplier for slower movement
+          const loopedPosition = scrollWithOffset % cycleDistance;
+          const boxProgress = loopedPosition / cycleDistance;
+          
+          // Smoother easing for continuous motion
+          const ease = easeInOut(boxProgress);
+          
+          // Even slower, more controlled animation
+          const scale = 0.2 + (ease * (5 + i * 0.15)); // Further reduced max scale and adjusted base scale
+          const rotation = 45 + (ease * 400 * (1 + i * 0.06)); // Much slower rotation
+          
+          // Smoother opacity transitions
+          let opacity;
+          if (boxProgress < 0.2) {
+            opacity = (boxProgress / 0.2) * 0.9 + 0.1; // Smoother fade in
+          } else if (boxProgress > 0.8) {
+            opacity = ((1 - boxProgress) / 0.2) * 0.9 + 0.1; // Smoother fade out
+          } else {
+            opacity = 1;
+          }
+          
+          // Much slower color transitions
+          const hueOffset = (scrolled * 0.05 + i * 15) % 360;
+          box.dataset.hue = hueOffset;
+          
+          // Batch style updates
+          const hue = box.dataset.hue || 0;
+          box.style.transform = `${transformBase}${rotation}deg) scale(${scale})`;
+          box.style.opacity = Math.max(0.1, Math.min(1, opacity));
+          
+          // Only update border color if it's changed
+          if (box.dataset.lastHue !== hue || box.dataset.lastOpacity !== opacity) {
+            box.style.borderColor = `hsla(${hue}, 80%, 65%, ${opacity})`;
+            box.dataset.lastHue = hue;
+            box.dataset.lastOpacity = opacity;
+          }
+        }
+        
+        ticking = false;
+      }
+      
+      // Optimized scroll handling with requestAnimationFrame and debouncing
+      let lastRenderedScroll = 0;
+      let lastScrollTime = 0;
+      let scrollTimeout;
+      let animationFrameId;
+      const SCROLL_THROTTLE = 16; // ~60fps
+      
+      function handleScroll() {
+        const now = Date.now();
+        lastScrollY = window.scrollY || window.pageYOffset;
+        
+        // Always handle scroll-to-top immediately for better UX
+        if (lastScrollY <= 10) {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(updateBoxes);
+          }
+          return;
+        }
+        
+        // Throttle the scroll events using requestAnimationFrame
+        if (now - lastScrollTime < SCROLL_THROTTLE) {
+          if (!ticking) {
+            ticking = true;
+            // Use a single animation frame for multiple scroll events
+            if (!animationFrameId) {
+              animationFrameId = requestAnimationFrame(() => {
+                updateBoxes();
+                animationFrameId = null;
+                ticking = false;
+              });
+            }
+          }
+          return;
+        }
+        
+        lastScrollTime = now;
+        
+        // Cancel any pending animation frame
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+        
+        // Schedule the next animation frame
+        ticking = true;
+        animationFrameId = requestAnimationFrame(() => {
+          updateBoxes();
+          animationFrameId = null;
+          ticking = false;
+        });
+      }
+      
+      // Use passive event listener for better scroll performance
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      // Initialize on load - show nested formation
+      window.addEventListener('load', function() {
+        setNestedLayout();
+        // Small delay to allow styles to settle before any scroll-driven animation
+        setTimeout(updateBoxes, 100);
+      });
+      
+      // Optimize for GPU rendering
+      boxes.forEach(box => {
+        // Only animate transform and opacity for better performance
+        box.style.willChange = 'transform, opacity';
+        // Use transform3d to promote to GPU layer
+        box.style.transform = 'translate3d(0, 0, 0)';
+        // Disable hover effects while scrolling for better performance
+        box.style.pointerEvents = 'none';
+      });
+      
+      // Re-enable pointer events after scroll ends
+      let scrollEndTimer;
+      window.addEventListener('scroll', () => {
+        document.body.classList.add('scrolling');
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(() => {
+          document.body.classList.remove('scrolling');
+          boxes.forEach(box => {
+            box.style.pointerEvents = 'auto';
+          });
+        }, 100);
+      }, { passive: true });
+
+      // Rubik's Cube Animation
+      (function () {
+        var cube = document.getElementById('cube');
+        var lid = document.getElementById('lid');
+        var base = document.getElementById('base');
+        
+        var lid_coordinates = [
+          // lid outline
+          [[-3,3,3],[-3,-3,3],[3,-3,3],[3,3,3],[-3,3,3],[-3,3,1],[-3,-3,1],[3,-3,1],[3,-3,3]],
+          // lid inner lines
+          [[3,1,3],[-3,1,3],[-3,1,1]],
+          [[3,-1,3],[-3,-1,3],[-3,-1,1]],
+          [[-3,-3,3],[-3,-3,1]],
+          [[-1,-3,1],[-1,-3,3],[-1,3,3]],
+          [[1,-3,1],[1,-3,3],[1,3,3]]
+        ];
+
+        var base_coordinates = [
+          [[-3,3,1],[3,3,1],[3,-3,1],[-3,-3,1],[-3,3,1],[-3,3,-3],[-3,-3,-3],[3,-3,-3],[3,-3,1]],
+          [[1,-3,-3],[1,-3,1],[1,1,1],[-3,1,1],[-3,1,-3]],
+          [[-1,-3,-3],[-1,-3,1],[-1,-1,1],[-3,-1,1],[-3,-1,-3]],
+          [[-3,-3,-3],[-3,-3,1]],
+          [[-3,3,-1],[-3,-3,-1],[3,-3,-1]]
+        ];
+
+        var u = 4; // size of the cube
+        var t = 0; // time
+        var isInViewport = true;
+
+        function project(coordinatesGroup, t) {
+          return coordinatesGroup.map(function (coordinatesSubGroup) {
+            return coordinatesSubGroup.map(function (coordinates) {
+              var x = coordinates[0];
+              var y = coordinates[1];
+              var z = coordinates[2];
+
+              return [
+                (x *  Math.cos(t) - y * Math.sin(t)) * u + 30,
+                (x * -Math.sin(t) - y * Math.cos(t) - z * Math.sqrt(2)) * u / Math.sqrt(3) + 30
+              ];
+            });
+          });
+        }
+        
+        function toPath(coordinates) {
+          return 'M' + (JSON
+            .stringify(coordinates)
+            .replace(/]],\[\[/g, 'M')
+            .replace(/],\[/g, 'L')
+            .slice(3, -3)
+          );
+        }
+
+        function easing(t) {
+          return (2 - Math.cos(Math.PI * t)) % 2 * Math.PI / 4;
+        }
+        
+        function tick() {
+          if (!isInViewport) return;
+          
+          t = (t + 1/30) % 3;
+          cube.style.transform = 'rotate(' + (Math.floor(t) * 120) + 'deg)';
+          
+          lid.setAttribute('d', toPath(project(lid_coordinates, easing(t))));
+          requestAnimationFrame(tick);
+        }
+        
+        // Only animate when in viewport
+        const observer = new IntersectionObserver((entries) => {
+          isInViewport = entries[0].isIntersecting;
+          if (isInViewport) {
+            tick();
+          }
+        });
+        observer.observe(cube);
+        
+        base.setAttribute('d', toPath(project(base_coordinates, Math.PI / 4)));
+        tick();
+      })();
+
+      // Loader and Button Logic
+      let isLoaded = false;
+      const bottomButton = document.getElementById('bottomButton');
+
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fade-out');
+          setTimeout(() => {
+            loader.style.display = 'none';
+            isLoaded = true; // Enable button visibility after loader is gone
+          }, 500);
+        }, 2000); // Show loader for 2 seconds
+      });
+    </script>
+  </body>
+</html>

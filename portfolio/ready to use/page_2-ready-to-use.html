@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page_2-ready-to-use.css" />
+    <title>Interests & Hobbies</title>
+  </head>
+  <body>
+    <!-- Enhanced Loading Screen -->
+    <div class="loader-wrapper" id="loader">
+      <div class="spinner-container">
+        <div class="spinner"></div>
+        <div class="spinner-glow"></div>
+      </div>
+      <p class="loading-text">Loading<span class="dots"></span></p>
+      <div class="loading-bar">
+        <div class="loading-progress" id="loadingProgress"></div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <div class="interests-section">
+        <h2 class="title">Interests and hobbies</h2>
+        <p class="description">
+          A little section to round out the professional purpose of this page—who's
+          the person behind it, really? What do they like—and what are they like?
+          Sections like this can be a nice way to learn more about what makes
+          someone tick.
+        </p>
+        
+        <!-- Image-Ready Tiles -->
+        <div class="tiles-container">
+          <div class="tile tile-1">
+            <!-- To add your image, replace the placeholder div with: -->
+            <!-- <img src="your-image-1.jpg" alt="Interest 1" class="tile-image"> -->
+            <div class="tile-placeholder gradient-1"></div>
+            <div class="tile-overlay"></div>
+          </div>
+          
+          <div class="tile tile-2">
+            <!-- To add your image, replace the placeholder div with: -->
+            <!-- <img src="your-image-2.jpg" alt="Interest 2" class="tile-image"> -->
+            <div class="tile-placeholder gradient-2"></div>
+            <div class="tile-overlay"></div>
+          </div>
+          
+          <div class="tile tile-3">
+            <!-- To add your image, replace the placeholder div with: -->
+            <!-- <img src="your-image-3.jpg" alt="Interest 3" class="tile-image"> -->
+            <div class="tile-placeholder gradient-3"></div>
+            <div class="tile-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Enhanced Loading Animation
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        const progressBar = document.getElementById('loadingProgress');
+        
+        // Smooth progress animation
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += Math.random() * 12 + 3;
+          if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            
+            // Fade out loader after complete
+            setTimeout(() => {
+              loader.classList.add('fade-out');
+              setTimeout(() => {
+                loader.style.display = 'none';
+              }, 800);
+            }, 400);
+          }
+          progressBar.style.width = progress + '%';
+        }, 120);
+      });
+      
+      // Staggered tile entrance animation
+      window.addEventListener('load', () => {
+        const tiles = document.querySelectorAll('.tile');
+        const section = document.querySelector('.interests-section');
+        
+        // Fade in section first
+        setTimeout(() => {
+          section.classList.add('visible');
+        }, 2200);
+        
+        // Then animate tiles with stagger
+        tiles.forEach((tile, index) => {
+          setTimeout(() => {
+            tile.classList.add('visible');
+          }, 2600 + (index * 250));
+        });
+      });
+      
+      // Animated loading dots
+      const dotsElement = document.querySelector('.dots');
+      if (dotsElement) {
+        let dotsCount = 0;
+        setInterval(() => {
+          dotsCount = (dotsCount + 1) % 4;
+          dotsElement.textContent = '.'.repeat(dotsCount);
+        }, 500);
+      }
+      
+      // Add hover parallax effect to tiles
+      document.querySelectorAll('.tile').forEach(tile => {
+        tile.addEventListener('mousemove', (e) => {
+          const rect = tile.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = ((y - centerY) / centerY) * -10;
+          const rotateY = ((x - centerX) / centerX) * 10;
+          
+          tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+        });
+        
+        tile.addEventListener('mouseleave', () => {
+          tile.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+      });
+    </script>
+  </body>
+</html>
